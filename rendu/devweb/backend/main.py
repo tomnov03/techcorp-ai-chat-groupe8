@@ -27,6 +27,7 @@ import os
 from typing import AsyncGenerator
 
 import httpx
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -36,6 +37,8 @@ from pydantic import BaseModel
 # --------------------------------------------------------------------------
 # Configuration
 # --------------------------------------------------------------------------
+
+load_dotenv()
 
 INFERENCE_BACKEND = os.getenv("INFERENCE_BACKEND", "ollama").lower()
 INFERENCE_URL = os.getenv("INFERENCE_URL", "http://localhost:11434")
