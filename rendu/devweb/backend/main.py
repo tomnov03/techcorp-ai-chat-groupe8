@@ -199,4 +199,7 @@ async def chat(req: ChatRequest):
 # Adapter ce chemin selon ton organisation : ici on suppose que
 # index.html / style.css / app.js sont directement dans rendu/devweb/
 # (au même niveau que le dossier backend/)
-app.mount("/", StaticFiles(directory="..", html=True), name="frontend")
+from pathlib import Path
+
+FRONTEND_DIR = Path(__file__).resolve().parent.parent
+app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
